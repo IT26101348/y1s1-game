@@ -1,6 +1,6 @@
 Simulation 2 results. 
 Jammed angle limit:- 25.00deg
 
-Step 1 / 5 | Pos: (743.51, 265.09) | Status: NORMAL 
-Result:- Battleship was sunk by the 2 escort ship at step 1
+Step 1 / 5 | Pos: (804.84, 487.87) | Status: NORMAL 
+Result:- Battleship was sunk by the 1 escort ship at step 1
  

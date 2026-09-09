@@ -1,0 +1,6 @@
+PART 2B SIMULATION 1C_A (Stationary, Continuous Firing, Cumulative Damage)
+Battleship Reload Time (T_B^q): 5.00s
+
+
+Final Status: SURVIVED | Health: 100.00% | Cumulative Impact: 0.00% | Total Time: 0.00s
+Strategy Used: Simultaneous Range-Lock Engagement (Highest DPS Target First)

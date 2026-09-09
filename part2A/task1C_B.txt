@@ -1,0 +1,35 @@
+PART 1C_B SIMULATION (Moving Path, Cumulative Damage)
+Gun Jammed Step: 2 , Jammed minTheta: 25.00 deg , Reload Time: 5.00s
+
+Step 1 / 5 , Pos: (83.78, 102.14) , Status: NORMAL
+Hit by Escort ID 0 , +8.00% damage , Total Damage: 8.00%
+Hit by Escort ID 2 , +4.00% damage , Total Damage: 12.00%
+Hit by Escort ID 4 , +7.00% damage , Total Damage: 19.00%
+Hit by Escort ID 6 , +7.00% damage , Total Damage: 26.00%
+Hit by Escort ID 8 , +4.00% damage , Total Damage: 30.00%
+Target Attack Order Sequence: [0, 4, 5, 6, 9, 7, 1, 8, 2]
+Destroyed Escort ID 0 (EA) , Time: 5.00s
+Destroyed Escort ID 4 (EC) , Time: 10.00s
+Destroyed Escort ID 5 (EC) , Time: 15.00s
+Destroyed Escort ID 6 (EC) , Time: 20.00s
+Destroyed Escort ID 9 (EC) , Time: 25.00s
+Destroyed Escort ID 7 (EB) , Time: 30.00s
+Destroyed Escort ID 1 (ED) , Time: 35.00s
+Destroyed Escort ID 8 (EE) , Time: 40.00s
+Destroyed Escort ID 2 (EE) , Time: 45.00s
+
+Step 2 / 5 , Pos: (357.71, 726.60) , Status: NORMAL
+Target Attack Order Sequence: [3]
+Destroyed Escort ID 3 (ED) , Time: 50.00s
+
+Step 3 / 5 , Pos: (754.68, 986.56) , Status: GUN JAMMED
+Target Attack Order Sequence: []
+
+Step 4 / 5 , Pos: (835.16, 822.25) , Status: GUN JAMMED
+Target Attack Order Sequence: []
+
+Step 5 / 5 , Pos: (822.25, 768.98) , Status: GUN JAMMED
+Target Attack Order Sequence: []
+
+Final Status: survived , Health: 70.00% , Cumulative Impact: 30.00% , Total Time: 50.00s
+Strategy Used: Priority Target Selection (Highest Impact Power First)

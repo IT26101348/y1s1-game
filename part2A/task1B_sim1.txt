@@ -1,0 +1,5 @@
+Part 1B Simulation 1 Results (Path Movement, Single Hit Sinks Battleship) 
+
+Step 1 / 5 , Battleship Position: (83.78, 102.14)
+Result: Battleship sunk at step 1 by escort Ship ID 0 (EA)!
+Strategy Used: Priority Target Selection (Highest Impact Power First)

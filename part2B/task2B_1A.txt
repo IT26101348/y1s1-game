@@ -1,0 +1,6 @@
+Part 2B Simulation 1A Results (Stationary, Range-Lock Target Engagement)
+Battleship Position: (7447.79, 984.27)
+Battleship Reload Time (T_B^q): 5.00s
+
+Result: Battleship SURVIVED | Total Engagement Time: 0.00s
+Strategy Used: Simultaneous Range-Lock Engagement (Highest DPS Target First)

@@ -1,0 +1,33 @@
+Simulation 2 results. 
+Jammed angle limit:- 25.00deg
+
+ + cumulative ImpactStep 1 / 5 | Pos: (184.01, 864.12) | Status: NORMAL 
+, Impact:- 0.00% Hit by escort ID 0 (+7.00%) , Cumulative impact: 7.00%
+ Hit by escort ID 5 (+6.00%) , Cumulative impact: 13.00%
+ Hit by escort ID 7 (+5.00%) , Cumulative impact: 18.00%
+Battleship destroyed escort Ship ID 0 at 753.64m distance.
+Battleship destroyed escort Ship ID 2 at 685.98m distance.
+Battleship destroyed escort Ship ID 3 at 688.73m distance.
+Battleship destroyed escort Ship ID 4 at 972.05m distance.
+Battleship destroyed escort Ship ID 5 at 732.35m distance.
+Battleship destroyed escort Ship ID 6 at 727.90m distance.
+Battleship destroyed escort Ship ID 7 at 702.98m distance.
+Battleship destroyed escort Ship ID 8 at 680.13m distance.
+Battleship destroyed escort Ship ID 9 at 825.47m distance.
+
+Step 2 / 5 | Pos: (69.05, 40.75) | Status: NORMAL 
+, Impact:- 18.00%Battleship destroyed escort Ship ID 1 at 899.94m distance.
+
+Step 3 / 5 | Pos: (933.76, 410.33) | Status: GUN JAMMED 
+, Impact:- 18.00%No escort ships in the step of 3
+
+Step 4 / 5 | Pos: (983.23, 922.25) | Status: GUN JAMMED 
+, Impact:- 18.00%No escort ships in the step of 4
+
+Step 5 / 5 | Pos: (407.84, 678.10) | Status: GUN JAMMED 
+, Impact:- 18.00%No escort ships in the step of 5
+
+Final Status:-  Battleship survived
+Total hits sustained: 3
+Cumulative impact: 18.00%
+Remaining health: 82.00%

@@ -1,2 +1,2 @@
-Simulation 1 resultsstep 1 / 5. Battleship position (743.51 , 265.09) 
-Result: Battleship was sunk by Escort Ship ID 2 at step 1
+Simulation 1 resultsstep 1 / 5. Battleship position (804.84 , 487.87) 
+Result: Battleship was sunk by Escort Ship ID 1 at step 1

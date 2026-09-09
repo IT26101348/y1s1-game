@@ -1,0 +1,25 @@
+PART 1C_A SIMULATION (Stationary, Cumulative Damage)
+Reload Time (T_B^q):- 5.00s
+
+Hit by escort ID 0 , +8.00% damage , Total Damage: 8.00%
+Hit by escort ID 2 , +4.00% damage , Total Damage: 12.00%
+Hit by escort ID 4 , +7.00% damage , Total Damage: 19.00%
+Hit by escort ID 6 , +7.00% damage , Total Damage: 26.00%
+Hit by escort ID 8 , +4.00% damage , Total Damage: 30.00%
+Hit by escort ID 9 , +7.00% damage , Total Damage: 37.00%
+Target Attack Order Sequence: [0, 4, 5, 6, 9, 7, 3, 1, 8, 2]
+
+Battleship Counter-Attack:
+Destroyed escort ID 0 (EA) , Time: 5.00s
+Destroyed escort ID 4 (EC) , Time: 10.00s
+Destroyed escort ID 5 (EC) , Time: 15.00s
+Destroyed escort ID 6 (EC) , Time: 20.00s
+Destroyed escort ID 9 (EC) , Time: 25.00s
+Destroyed escort ID 7 (EB) , Time: 30.00s
+Destroyed escort ID 3 (ED) , Time: 35.00s
+Destroyed escort ID 1 (ED) , Time: 40.00s
+Destroyed escort ID 8 (EE) , Time: 45.00s
+Destroyed escort ID 2 (EE) , Time: 50.00s
+
+Final Status:- survived , Health: 63.00% , Cumulative Impact: 37.00%
+Strategy Used: Priority Target Selection (Highest Impact Power First)

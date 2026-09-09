@@ -1,0 +1,30 @@
+Simulation 1 resultsstep 1 / 5. Battleship position (184.01 , 864.12) , Impact:- 0.00
+Result: Battleship was sunk by Escort Ship ID 0 a(+7.00%) , Cumulative Impact: 7.00%
+Result: Battleship was sunk by Escort Ship ID 5 a(+6.00%) , Cumulative Impact: 13.00%
+Result: Battleship was sunk by Escort Ship ID 7 a(+5.00%) , Cumulative Impact: 18.00%
+ Battleship destroyed escort Ship ID 0 (distance: 753.64m)
+ Battleship destroyed escort Ship ID 2 (distance: 685.98m)
+ Battleship destroyed escort Ship ID 3 (distance: 688.73m)
+ Battleship destroyed escort Ship ID 4 (distance: 972.05m)
+ Battleship destroyed escort Ship ID 5 (distance: 732.35m)
+ Battleship destroyed escort Ship ID 6 (distance: 727.90m)
+ Battleship destroyed escort Ship ID 7 (distance: 702.98m)
+ Battleship destroyed escort Ship ID 8 (distance: 680.13m)
+ Battleship destroyed escort Ship ID 9 (distance: 825.47m)
+
+step 2 / 5. Battleship position (69.05 , 40.75) , Impact:- 18.00
+ Battleship destroyed escort Ship ID 1 (distance: 899.94m)
+
+step 3 / 5. Battleship position (933.76 , 410.33) , Impact:- 18.00
+No escortships destroyed in step 3.
+
+step 4 / 5. Battleship position (983.23 , 922.25) , Impact:- 18.00
+No escortships destroyed in step 4.
+
+step 5 / 5. Battleship position (407.84 , 678.10) , Impact:- 18.00
+No escortships destroyed in step 5.
+
+Final Status:- Battleship survived
+Total hits sustained: 0
+Cumulative impact: 18.00%
+Remaining health: 82.00%

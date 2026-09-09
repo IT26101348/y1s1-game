@@ -1,0 +1,15 @@
+Part 2B Simulation 1B-Sim1 Results (Path Movement, Single Hit Sinks Battleship, Range-Lock Engagement)
+
+Step 1 / 5 | Position: (5457.46, 3199.73)
+
+Step 2 / 5 | Position: (1286.83, 2648.85)
+
+Step 3 / 5 | Position: (3707.88, 4028.01)
+  [t = 0.00s] Battleship LOCKED & FIRED -> DESTROYED Escort ID 3 (EA)
+
+Step 4 / 5 | Position: (4189.57, 4857.69)
+
+Step 5 / 5 | Position: (2211.18, 6085.96)
+
+Final Outcome: Battleship survived all steps | Total Time: 0.00s
+Strategy Used: Simultaneous Range-Lock Engagement (Highest DPS Target First)

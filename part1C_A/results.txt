@@ -1,0 +1,31 @@
+new part1A results
+
+Battleship initial position:- (286.11 , 132.76)
+Escort Ship ID 0 (EA) hit the Battleship! Damage: +8.00% | Cumulative Impact: 8.00%
+Escort Ship ID 1 (ED) hit the Battleship! Damage: +5.00% | Cumulative Impact: 13.00%
+Escort Ship ID 2 (EE) hit the Battleship! Damage: +4.00% | Cumulative Impact: 17.00%
+Escort Ship ID 3 (EC) hit the Battleship! Damage: +7.00% | Cumulative Impact: 24.00%
+Escort Ship ID 4 (EB) hit the Battleship! Damage: +6.00% | Cumulative Impact: 30.00%
+Escort Ship ID 5 (EC) hit the Battleship! Damage: +7.00% | Cumulative Impact: 37.00%
+Escort Ship ID 6 (EC) hit the Battleship! Damage: +7.00% | Cumulative Impact: 44.00%
+Escort Ship ID 7 (EA) hit the Battleship! Damage: +8.00% | Cumulative Impact: 52.00%
+Escort Ship ID 9 (EA) hit the Battleship! Damage: +8.00% | Cumulative Impact: 60.00%
+Total hits on Battleship: 9
+
+Result: Battleship SURVIVED
+Cumulative Impact on Battleship: 60.00%
+Remaining Health: 40.00%
+
+Battleship counter attack (Max Range: 1019.37m)
+Battleship destroyed Escort Ship ID 0 (EA) at Distance of 711.49m
+Battleship destroyed Escort Ship ID 1 (ED) at Distance of 488.50m
+Battleship destroyed Escort Ship ID 2 (EE) at Distance of 271.48m
+Battleship destroyed Escort Ship ID 3 (EC) at Distance of 257.39m
+Battleship destroyed Escort Ship ID 4 (EB) at Distance of 195.89m
+Battleship destroyed Escort Ship ID 5 (EC) at Distance of 327.96m
+Battleship destroyed Escort Ship ID 6 (EC) at Distance of 164.31m
+Battleship destroyed Escort Ship ID 7 (EA) at Distance of 387.91m
+Battleship destroyed Escort Ship ID 8 (ED) at Distance of 668.89m
+Battleship destroyed Escort Ship ID 9 (EA) at Distance of 183.72m
+
+Total escort ships destroyed by Battleship: 10

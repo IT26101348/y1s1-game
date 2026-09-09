@@ -1,0 +1,7 @@
+Simulation 1 results (Stationary, Single Hit Sinks Battleship)
+Battleship Position: (222.17, 238.53)
+
+Battleship Reload Time (T_B^q): 5.00s
+
+Result: Battleship SUNK by Escort Ship ID 0 (EA)!
+Strategy Used: Priority Target Selection (Highest Impact Power First)

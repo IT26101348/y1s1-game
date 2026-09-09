@@ -1,0 +1,16 @@
+PART 2B SIMULATION 1C_B (Moving Path, Continuous Firing, Cumulative Damage)
+Gun Jammed Step: 2 | Jammed minTheta: 25.00 deg | Battleship Reload Time: 5.00s
+
+Step 1 / 5 | Pos: (5457.46, 3199.73) | Status: NORMAL
+
+Step 2 / 5 | Pos: (1286.83, 2648.85) | Status: NORMAL
+
+Step 3 / 5 | Pos: (3707.88, 4028.01) | Status: GUN JAMMED
+  [t = 0.00s] Battleship LOCKED & FIRED -> DESTROYED Escort ID 3 (EA)
+
+Step 4 / 5 | Pos: (4189.57, 4857.69) | Status: GUN JAMMED
+
+Step 5 / 5 | Pos: (2211.18, 6085.96) | Status: GUN JAMMED
+
+Final Status: SURVIVED | Health: 100.00% | Cumulative Impact: 0.00% | Total Time: 0.00s
+Strategy Used: Simultaneous Range-Lock Engagement (Highest DPS Target First)

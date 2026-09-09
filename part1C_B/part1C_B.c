@@ -1,4 +1,4 @@
-//this is naval simulation part 1 B  
+//this is naval simulation part 1 C from B 
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
@@ -42,6 +42,8 @@ typedef struct {
 	double maxVelocity;
 	double x; //x position 
 	double y; //y position 
+	double health;
+	double cumulativeImpact;
 
 } battleShip;
 
@@ -99,7 +101,7 @@ double getMaxMinEscortshipFireRange (const escortShip *escort, double *rangeMin,
 	double thetaH = escort -> minAngle + escort -> angleRange;
 	double thetaL = escort -> minAngle;
 
-	*rangeMin = (escort -> minVelocity * escort -> minVelocity * sin( degToRad ( 2.0 * thetaL ))) / gravity; //finds minimus range 
+	*rangeMin = (escort -> minVelocity * sin( degToRad ( 2.0 * thetaL ))) / gravity; //finds minimus range 
 	
 	//finds which angle is the closest one to the 45
 	double thetabest = 45.0;
@@ -124,6 +126,8 @@ void battlefieldSetup(battleField *bf, double canvasSize, int escortNumber, char
 	bf->battleship.maxVelocity = BVelocityMax;
 	bf->battleship.x = getRandom(0.0, canvasSize);
 	bf->battleship.y = getRandom(0.0, canvasSize);
+	bf->battleship.health = 1.0;
+	bf->battleship.cumulativeImpact = 0.0;
 
 	bf->escort = (escortShip *)malloc(sizeof(escortShip) * escortNumber);
 
@@ -154,9 +158,11 @@ void battlefieldSetup(battleField *bf, double canvasSize, int escortNumber, char
 		}
 	}
 }
-
-void resetEscortShip(battleField *bf)
+//to run 2 simulations 
+void resetSimulationState(battleField *bf)
 {
+	bf->battleship.health = 1.0;
+	bf->battleship.cumulativeImpact = 0.0;
 	for (int i = 0; i < bf -> numberEscort; i++)
 	{
 		bf->escort[i].isDestroyed = 0;
@@ -203,22 +209,23 @@ void savefile (const battleField *bf, const char *filename)
 
 void simulate1(battleField *bf,point *path, int k, const char *outputFileName)
 {
-	resetEscortShip(bf);
+	resetSimulationState(bf);
 	FILE *file = fopen(outputFileName, "w");
 	if(!file) return;
 
 	fprintf(file, "Simulation 1 results");
 
-	int BSunk = 0;
+	int totalHitsSustained = 0;
 
 	for (int step = 0; step < k; step++)
 	{
 		bf->battleship.x = path[step].x;
 		bf->battleship.y = path[step].y;
 
-		fprintf(file, "step %d / %d. Battleship position (%.2f , %.2f) \n", step + 1, k, bf->battleship.x, bf-> battleship.y);
+		fprintf(file, "step %d / %d. Battleship position (%.2f , %.2f) , Impact:- %.2f\n", step + 1, k, bf->battleship.x, bf-> battleship.y, bf->battleship.cumulativeImpact * 100.0);
 		
 		//escortships check if they can hit the battleship
+		//int stepHits = 0;
 		for (int i = 0; i < bf->numberEscort; i++)
 		{
 			if(bf->escort[i].isDestroyed) continue;
@@ -230,43 +237,57 @@ void simulate1(battleField *bf,point *path, int k, const char *outputFileName)
 
 			if(distance >= ERangeMin && distance <= ERangeMax)
 			{
-				BSunk = 1;
-				fprintf(file, "Result: Battleship was sunk by Escort Ship ID %d at step %d\n", bf->escort[i].id, step + 1);
-				break;
+				//stepHits++;
+				//totalHitsSustaned++;
+				bf->battleship.cumulativeImpact += bf->escort[i].impactPower;
+				bf->battleship.health -= bf->escort[i].impactPower;
+
+				fprintf(file, "Result: Battleship was sunk by Escort Ship ID %d a(+%.2f%%) , Cumulative Impact: %.2f%%\n", bf->escort[i].id, bf->escort[i].impactPower * 100.0, bf->battleship.cumulativeImpact * 100.0);			
 			}
 		}
 
-		if(BSunk) break;
-		
-		//battleship attacks active escort ships in the range
+		if (bf->battleship.health <= 0.0)
+		{
+			bf->battleship.health = 0.0;
+			fprintf(file, "\nResult: Battleship sunk at step %d! Total Cumulative Impact %.2f%%\n", step + 1, bf->battleship.cumulativeImpact * 100.0);
+
+			break;
+		}
+
+		//battleship attacts escort ships in the range 
 		double BRangeMax = getMaxBattleshipFireRange(bf->battleship.maxVelocity, 0.0);
 		int hitInStep = 0;
 
 		for (int i = 0; i < bf->numberEscort; i++)
 		{
-			if(bf->escort[i].isDestroyed) continue;
-			
+			if (bf->escort[i].isDestroyed) continue;
 			double distance = getDistance(bf->battleship.x, bf->battleship.y, bf->escort[i].x, bf->escort[i].y);
-
 			if (distance <= BRangeMax)
 			{
 				bf->escort[i].isDestroyed = 1;
 				hitInStep++;
-				fprintf(file, "Hit escort ship ID %d (distance: %.2fm)\n", bf->escort[i].id, distance);
+				fprintf(file, " Battleship destroyed escort Ship ID %d (distance: %.2fm)\n", bf->escort[i].id, distance);
 			}
-
 		}
 
-		if (hitInStep == 0) fprintf(file, "No Escort Ships in range at step %d.\n", step + 1);
-		fprintf(file, "\n");
+		if (hitInStep == 0)
+		{
+			fprintf(file, "No escortships destroyed in step %d.\n", step + 1);
+		}
+		
+		fprintf(file,"\n");
 	}
 
-	if(BSunk)
+	if (bf->battleship.health > 0.0)
 	{
-		printf("Simulation 1:- battleship was sunk.\n");
+		printf("Simulation 1:- Battleship survived all %d steps (Impact: %.2f%% , Total Hits: %d)\n", k, bf->battleship.cumulativeImpact * 100.0, totalHitsSustained);
+		fprintf(file, "Final Status:- Battleship survived\n");
+		fprintf(file, "Total hits sustained: %d\n", totalHitsSustained);
+		fprintf(file, "Cumulative impact: %.2f%%\n", bf->battleship.cumulativeImpact * 100.0);
+		fprintf(file, "Remaining health: %.2f%%\n", bf->battleship.health * 100.0);
 	} else
 	{
-		printf("Simulation 1: Battleship survived all %d steps.\n",k);
+		printf("Simulation 1:- Battleship sunk (Impact:- %.2f%% , Total hits:- %d)\n", bf->battleship.cumulativeImpact * 100.0, totalHitsSustained);
 	}
 
 	fclose(file);
@@ -277,13 +298,14 @@ void simulate1(battleField *bf,point *path, int k, const char *outputFileName)
 
 void simulate2(battleField *bf, point *path, int k, int t, double minTheta, const char *outputFileName)
 {
-	resetEscortShip(bf);
+	resetSimulationState(bf);
 	FILE *file = fopen(outputFileName, "w");
 	if (!file) return;
 
 	fprintf(file, "Simulation 2 results. \n");
-	fprintf(file, "Jammed angle limit:- %.2fdeg\n\n", minTheta);
-	int BSunk = 0;
+	fprintf(file, "Jammed angle limit:- %.2fdeg\n\n + cumulative Impact", minTheta);
+	
+	int totalHitsSustained = 0;
 
 	for (int step = 0; step < k; step++)
 	{
@@ -293,9 +315,10 @@ void simulate2(battleField *bf, point *path, int k, int t, double minTheta, cons
 		int isJammed = (step >= t);
 		double activeMinTheta = isJammed ? minTheta : 0.0;
 
-		fprintf(file, "Step %d / %d | Pos: (%.2f, %.2f) | Status: %s \n", step + 1, k, bf->battleship.x, bf->battleship.y, isJammed ? "GUN JAMMED" : "NORMAL");
+		fprintf(file, "Step %d / %d | Pos: (%.2f, %.2f) | Status: %s \n, Impact:- %.2f%%", step + 1, k, bf->battleship.x, bf->battleship.y, isJammed ? "GUN JAMMED" : "NORMAL", bf->battleship.cumulativeImpact * 100.0);
 
 		//escort ships check is the battleship in the range or not
+		int stepHits = 0;
 		for (int i = 0; i < bf->numberEscort; i++)
 		{
 			if (bf->escort[i].isDestroyed) continue;
@@ -306,13 +329,21 @@ void simulate2(battleField *bf, point *path, int k, int t, double minTheta, cons
 
 			if (distance >= ERangeMin && distance <= ERangeMax)
 			{
-				BSunk = 1;
-				fprintf(file, "Result:- Battleship was sunk by the %d escort ship at step %d\n ",bf->escort[i].id, step + 1);
-				break;
+				stepHits++;
+				totalHitsSustained++;
+				bf->battleship.cumulativeImpact += bf->escort[i].impactPower;
+				bf->battleship.health -= bf->escort[i].impactPower;
+
+				fprintf(file, " Hit by escort ID %d (+%.2f%%) , Cumulative impact: %.2f%%\n", bf->escort[i].id, bf->escort[i].impactPower * 100.0, bf->battleship.cumulativeImpact * 100.0);	
 			}
 		}
-	
-		if (BSunk) break;
+
+		if (bf->battleship.health <= 0.0)
+		{
+			bf->battleship.health = 0.0;
+			fprintf(file, "\nResult-: Battleship sunk at step %d! Total cumulative impact reached %.2f%%\n", step + 1, bf->battleship.cumulativeImpact * 100.0);
+			break;
+		}
 
 		//battleship attacks using remaing range
 		double BRangeMax = getMaxBattleshipFireRange(bf->battleship.maxVelocity, activeMinTheta);
@@ -321,29 +352,34 @@ void simulate2(battleField *bf, point *path, int k, int t, double minTheta, cons
 		for (int i = 0; i < bf-> numberEscort; i++)
 		{
 			if(bf->escort[i].isDestroyed) continue;
+			
 			double distance = getDistance(bf->battleship.x, bf->battleship.y, bf->escort[i].x, bf->escort[i].y);
 			if (distance <= BRangeMax)
 			{
 				bf->escort[i].isDestroyed = 1;
 				hitInStep++;
-				fprintf(file, "Hit escort ship ID %d at %.2fm distance.\n",bf->escort[i].id, distance);
-
+				fprintf(file, "Battleship destroyed escort Ship ID %d at %.2fm distance.\n", bf->escort[i].id, distance);
 			}
 		}
-		if (hitInStep == 0 ) fprintf(file,"No escort ships ine the step of %d\n",step + 1);
+		if (hitInStep == 0 ) fprintf(file,"No escort ships in the step of %d\n",step + 1);
 		fprintf(file, "\n");
 
 	}
-	if (BSunk)
+
+	if (bf->battleship.health > 0.0)
 	{
-		printf("Simulation 2:- battleship was sunk.\n");
-	} else 
+		printf("Simulation 2:- Battleship survived all %d steps (Impact: %.2f%% , Total Hits: %d)\n", k, bf->battleship.cumulativeImpact * 100.0, totalHitsSustained);
+		fprintf(file, "Final Status:-  Battleship survived\n");
+		fprintf(file, "Total hits sustained: %d\n", totalHitsSustained);
+		fprintf(file, "Cumulative impact: %.2f%%\n", bf->battleship.cumulativeImpact * 100.0);
+		fprintf(file, "Remaining health: %.2f%%\n", bf->battleship.health * 100.0);
+	}else 
 	{
-		printf("Simulation 2:- Battleeship survied all %d steps.\n",k);
+		printf("Simulation 2:- Battleship sunk (Impact: %.2f%% , Total Hits: %d)\n", bf->battleship.cumulativeImpact * 100.0, totalHitsSustained);
 	}
 
-	 fclose(file);
-	 printf("Simulation 2 results saved as '%s'\n",outputFileName);
+	fclose(file);
+	printf("Simulation 2 results saved as '%s'\n",outputFileName);
 }
 
 //start of the main funtion 
@@ -361,7 +397,7 @@ int main(void)
 	double mintheta = 25.0; //jammed angle restriction (0<minTheta<30)
 
 	point *path = generatePath(k, bf.canvasSize);
-				
+		
 
 	savefile(&bf, "battleformation.txt");
 	simulate1(&bf, path, k, "results_simulation1.txt");
